@@ -303,6 +303,32 @@ namespace Microsoft.SqlTools.ServiceLayer.Test.Common
         }
 
         /// <summary>
+        /// Run a query using a given connection bound to a URI
+        /// </summary>
+        public async Task<ResultSetEventParams> RunQueryAndWaitForFirstResultSet(string ownerUri, string query, int timeoutMilliseconds = 5000)
+        {
+            // Write the query text to a backing file
+            WriteToFile(ownerUri, query);
+
+            var queryParams = new ExecuteDocumentSelectionParams
+            {
+                OwnerUri = ownerUri,
+                QuerySelection = null
+            };
+
+            var result = await Driver.SendRequest(ExecuteDocumentSelectionRequest.Type, queryParams);
+            if (result != null)
+            {
+                var eventResult = await Driver.WaitForEvent(ResultSetCompleteEvent.Type, timeoutMilliseconds);
+                return eventResult;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Run a query using a given connection bound to a URI. This method only waits for the initial response from query
         /// execution (QueryExecuteResult). It is up to the caller to wait for the QueryCompleteEvent if they are interested.
         /// </summary>
@@ -339,6 +365,11 @@ namespace Microsoft.SqlTools.ServiceLayer.Test.Common
             timer.EndAndPrint(testName);
 
             return result;
+        }
+
+        public void PrintTestResult(double elapsed, [CallerMemberName] string testName = "")
+        {
+            TestTimer.PrintTestResult(elapsed, testName);
         }
 
         public async Task ExecuteWithTimeout(TestTimer timer, int timeout, Func<Task<bool>> repeatedCode,

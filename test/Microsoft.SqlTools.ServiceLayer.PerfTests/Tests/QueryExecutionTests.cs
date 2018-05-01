@@ -61,6 +61,69 @@ namespace Microsoft.SqlTools.ServiceLayer.PerfTests
         }
 
         [Fact]
+        public async Task MediumQueryResultCompleteOnPremTest()
+        {
+            TestServerType serverType = TestServerType.OnPrem;
+
+            using (SelfCleaningTempFile queryTempFile = new SelfCleaningTempFile())
+            using (TestServiceDriverProvider testService = new TestServiceDriverProvider())
+            {
+                const string query = @"
+                SELECT * FROM sys.all_objects o
+                join sys.all_objects o2 on o2.object_id = o.object_id
+                join sys.all_columns c on o.object_id = c.object_id
+                join sys.all_sql_modules b on b.object_id = o.object_id
+                join sys.all_parameters p on p.object_id = o.object_id
+                ";
+
+                await testService.ConnectForQuery(serverType, query, queryTempFile.FilePath, SqlTestDb.MasterDatabaseName);
+
+                var queryResult = await testService.CalculateRunTime(async () =>
+                {
+                    return await testService.RunQueryAndWaitToComplete(queryTempFile.FilePath, query, 10000);
+                   
+                }, false);
+
+                Assert.NotNull(queryResult);
+                Assert.True(queryResult.BatchSummaries.Any(x => x.ResultSetSummaries.Any(r => r.RowCount > 0)));
+                testService.PrintTestResult(TimeSpan.Parse(queryResult.BatchSummaries[0].ExecutionElapsed).TotalMilliseconds);
+
+                await testService.Disconnect(queryTempFile.FilePath);
+            }
+        }
+
+        [Fact]
+        public async Task MediumQueryFirstResultSetOnPremTest()
+        {
+            TestServerType serverType = TestServerType.OnPrem;
+
+            using (SelfCleaningTempFile queryTempFile = new SelfCleaningTempFile())
+            using (TestServiceDriverProvider testService = new TestServiceDriverProvider())
+            {
+                const string query = @"
+                SELECT * FROM sys.all_objects o
+                join sys.all_objects o2 on o2.object_id = o.object_id
+                join sys.all_columns c on o.object_id = c.object_id
+                join sys.all_sql_modules b on b.object_id = o.object_id
+                join sys.all_parameters p on p.object_id = o.object_id
+                ";
+
+                await testService.ConnectForQuery(serverType, query, queryTempFile.FilePath, SqlTestDb.MasterDatabaseName);
+
+                var queryResult = await testService.CalculateRunTime(async () =>
+                {
+                    return await testService.RunQueryAndWaitForFirstResultSet(queryTempFile.FilePath, query, 10000);
+
+                }, true);
+
+                Assert.NotNull(queryResult);
+                Assert.True(queryResult.ResultSetSummary.RowCount > 0);
+
+                await testService.Disconnect(queryTempFile.FilePath);
+            }
+        }
+
+        [Fact]
         [CreateTestDb(TestServerType.OnPrem)]
         public async Task CancelQueryOnPremTest()
         {

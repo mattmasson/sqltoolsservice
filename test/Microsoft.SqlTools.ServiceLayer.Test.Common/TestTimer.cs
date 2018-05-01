@@ -50,16 +50,21 @@ namespace Microsoft.SqlTools.ServiceLayer.Test.Common
             End();
             if (PrintResult)
             {
-                var currentColor = Console.ForegroundColor;
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "Test Name: {0} Run time in milliSeconds: {1}", testName, TotalMilliSeconds));
-                Console.ForegroundColor = currentColor;
-                string resultContent = Newtonsoft.Json.JsonConvert.SerializeObject(new TestResult { ElapsedTime = TotalMilliSeconds });
-                string fileName = testName + ".json";
-                string resultFilePath = string.IsNullOrEmpty(resultFolder) ? fileName : Path.Combine(resultFolder, fileName);
-                File.WriteAllText(resultFilePath, resultContent);
-                Console.WriteLine("Result file: " + resultFilePath);
+                PrintTestResult(TotalMilliSeconds, testName);
             }
+        }
+
+        public static void PrintTestResult(double elapsed, [CallerMemberName] string testName = "")
+        {
+            var currentColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "Test Name: {0} Run time in milliSeconds: {1}", testName, elapsed));
+            Console.ForegroundColor = currentColor;
+            string resultContent = Newtonsoft.Json.JsonConvert.SerializeObject(new TestResult { ElapsedTime = elapsed });
+            string fileName = testName + ".json";
+            string resultFilePath = string.IsNullOrEmpty(resultFolder) ? fileName : Path.Combine(resultFolder, fileName);
+            File.WriteAllText(resultFilePath, resultContent);
+            Console.WriteLine("Result file: " + resultFilePath);
         }
 
         public double TotalMilliSeconds
