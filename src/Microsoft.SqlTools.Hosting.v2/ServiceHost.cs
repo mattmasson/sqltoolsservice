@@ -20,26 +20,27 @@ namespace Microsoft.SqlTools.Hosting
     public class ServiceHost : IServiceHost
     {
         private const int DefaultShutdownTimeoutSeconds = 120;
-        
+
         #region Fields
-        
+
         private int? shutdownTimeoutSeconds;
 
         internal readonly List<Func<InitializeParameters, IEventSender, Task>> initCallbacks;
         internal readonly List<Func<object, IEventSender, Task>> shutdownCallbacks;
         internal IJsonRpcHost jsonRpcHost;
-        
+
         #endregion
-        
+
         #region Construction
 
         /// <summary>
         /// Base constructor
         /// </summary>
         internal ServiceHost()
-        {           
+        {
             shutdownCallbacks = new List<Func<object, IEventSender, Task>>();
             initCallbacks = new List<Func<InitializeParameters, IEventSender, Task>>();
+            ServerCapabilities = new ServerCapabilities();
         }
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace Microsoft.SqlTools.Hosting
         {
             Validate.IsNotNull(nameof(protocolChannel), protocolChannel);
             jsonRpcHost = new JsonRpcHost(protocolChannel);
-            
+
             // Register any request that the service host will handle
             SetEventHandler(ExitNotification.Type, HandleExitNotification, true);
             SetAsyncRequestHandler(ShutdownRequest.Type, HandleShutdownRequest, true);
@@ -67,11 +68,11 @@ namespace Microsoft.SqlTools.Hosting
         {
             return new ServiceHost(new StdioServerChannel());
         }
-        
+
         #endregion
 
         #region Properties
-        
+
         public int ShutdownTimeoutSeconds
         {
             get => shutdownTimeoutSeconds ?? DefaultShutdownTimeoutSeconds;
@@ -79,6 +80,12 @@ namespace Microsoft.SqlTools.Hosting
         }
 
         public InitializeResponse InitializeResponse { get; set; }
+
+        /// <summary>
+        /// Declares the <see cref="Microsoft.SqlTools.DataProtocol.Contracts.ServerCapabilities">ServerCapabilities</see>
+        /// for the service. 
+        /// </summary>        
+        virtual public ServerCapabilities ServerCapabilities { get; set; }
 
         #endregion
         
@@ -180,7 +187,7 @@ namespace Microsoft.SqlTools.Hosting
             {
                 InitializeResponse = new InitializeResponse
                 {
-                    Capabilities = new ServerCapabilities()
+                    Capabilities = ServerCapabilities
                 };
             }
             requestContext.SendResult(InitializeResponse);
