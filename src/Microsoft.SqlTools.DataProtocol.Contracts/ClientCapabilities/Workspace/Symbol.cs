@@ -3,6 +3,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
 
+using System.Collections.Generic;
 using Microsoft.SqlTools.DataProtocol.Contracts.Common;
 
 namespace Microsoft.SqlTools.DataProtocol.Contracts.ClientCapabilities.Workspace
@@ -32,6 +33,6 @@ namespace Microsoft.SqlTools.DataProtocol.Contracts.ClientCapabilities.Workspace
         /// If this property is not present the client only supports the symbol kinds from File to
         /// Array as defined in the initial version of the protocol.
         /// </summary>
-        public SymbolKinds? ValueSet { get; set; }
+        public List<SymbolKind> ValueSet { get; set; }
     }
 }

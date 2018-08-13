@@ -9,83 +9,32 @@ using Newtonsoft.Json;
 
 namespace Microsoft.SqlTools.DataProtocol.Contracts.Common
 {
-    [Flags]
-    [JsonConverter(typeof(FlagsIntConverter))]
-    public enum CompletionItemKinds
+    public enum CompletionItemKind
     {
-        [FlagsIntConverter.SerializeValue(1)]
-        Text = 1 << 0,
-        
-        [FlagsIntConverter.SerializeValue(2)]
-        Method = 1 << 1,
-        
-        [FlagsIntConverter.SerializeValue(3)]
-        Function = 1 << 2,
-        
-        [FlagsIntConverter.SerializeValue(4)]
-        Constructor = 1 << 3,
-        
-        [FlagsIntConverter.SerializeValue(5)]
-        Field = 1 << 4,
-        
-        [FlagsIntConverter.SerializeValue(6)]
-        Variable = 1 << 5,
-        
-        [FlagsIntConverter.SerializeValue(7)]
-        Class = 1 << 6,
-        
-        [FlagsIntConverter.SerializeValue(8)]
-        Interface = 1 << 7,
-        
-        [FlagsIntConverter.SerializeValue(9)]
-        Module = 1 << 8,
-        
-        [FlagsIntConverter.SerializeValue(10)]
-        Property = 1 << 9,
-        
-        [FlagsIntConverter.SerializeValue(11)]
-        Unit = 1 << 10,
-        
-        [FlagsIntConverter.SerializeValue(12)]
-        Value = 1 << 11,
-        
-        [FlagsIntConverter.SerializeValue(13)]
-        Enum = 1 << 12,
-        
-        [FlagsIntConverter.SerializeValue(14)]
-        Keyword = 1 << 13,
-        
-        [FlagsIntConverter.SerializeValue(15)]
-        Snippet = 1 << 14,
-        
-        [FlagsIntConverter.SerializeValue(16)]
-        Color = 1 << 15,
-        
-        [FlagsIntConverter.SerializeValue(17)]
-        File = 1 << 16,
-        
-        [FlagsIntConverter.SerializeValue(18)]
-        Reference = 1 << 17,
-        
-        [FlagsIntConverter.SerializeValue(19)]
-        Folder = 1 << 18,
-        
-        [FlagsIntConverter.SerializeValue(20)]
-        EnumMember = 1 << 19,
-        
-        [FlagsIntConverter.SerializeValue(21)]
-        Constant = 1 << 20,
-        
-        [FlagsIntConverter.SerializeValue(22)]
-        Struct = 1 << 21,
-        
-        [FlagsIntConverter.SerializeValue(23)]
-        Event = 1 << 22,
-        
-        [FlagsIntConverter.SerializeValue(24)]
-        Operator = 1 << 23,
-        
-        [FlagsIntConverter.SerializeValue(25)]
-        TypeParameter = 1 << 24
+        Text = 1,
+        Method = 2,
+        Function = 3,
+        Constructor = 4,
+        Field = 5,
+        Variable = 6,
+        Class = 7,
+        Interface = 8,
+        Module = 9,
+        Property = 10,
+        Unit = 11,
+        Value = 12,
+        Enum = 13,
+        Keyword = 14,
+        Snippet = 15,
+        Color = 16,
+        File = 17,
+        Reference = 18,
+        Folder = 19,
+        EnumMember = 20,
+        Constant = 21,
+        Struct = 22,
+        Event = 23,
+        Operator = 24,
+        TypeParameter = 25
     }
 }

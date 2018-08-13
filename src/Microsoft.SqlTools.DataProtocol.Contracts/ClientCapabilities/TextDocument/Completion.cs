@@ -3,6 +3,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
 
+using System.Collections.Generic;
 using Microsoft.SqlTools.DataProtocol.Contracts.Common;
 
 namespace Microsoft.SqlTools.DataProtocol.Contracts.ClientCapabilities.TextDocument
@@ -58,6 +59,6 @@ namespace Microsoft.SqlTools.DataProtocol.Contracts.ClientCapabilities.TextDocum
         /// If this property is not present, the client only supports the completion item kinds
         /// from Text to Reference as defined in the initial version of the protocol.
         /// </summary>
-        public CompletionItemKinds? ValueSet { get; set; }
+        public List<CompletionItemKind> ValueSet { get; set; }
     }
 }
