@@ -37,7 +37,7 @@ namespace Microsoft.SqlTools.Hosting.Extensibility
     /// 
     /// Extending classes should implement per below code example
     /// <code>
-    /// [Export(typeof(IHostedService)]
+    /// [Export(typeof(IHostedService))]
     /// MyService : HostedService&lt;MyService&gt;
     /// {
     ///     public override void InitializeService(IServiceHost serviceHost)
