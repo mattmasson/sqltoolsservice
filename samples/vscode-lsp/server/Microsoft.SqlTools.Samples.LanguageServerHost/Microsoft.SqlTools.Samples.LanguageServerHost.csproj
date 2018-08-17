@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
+    <PackageReference Include="System.Composition" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Microsoft.SqlTools.CoreServices\Microsoft.SqlTools.CoreServices.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Microsoft.SqlTools.Hosting.v2\Microsoft.SqlTools.Hosting.csproj" />
+    <ProjectReference Include="..\Microsoft.SqlTools.Samples.LanguageServerHost.Services\Microsoft.SqlTools.Samples.LanguageServerHost.Services.csproj" />
+  </ItemGroup>
+
+</Project>

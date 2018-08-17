@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.SqlTools.Samples.LanguageServerHost", "Microsoft.SqlTools.Samples.LanguageServerHost\Microsoft.SqlTools.Samples.LanguageServerHost.csproj", "{249DA226-6593-44EC-9744-65B2C6B66649}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.SqlTools.Hosting", "..\..\..\src\Microsoft.SqlTools.Hosting.v2\Microsoft.SqlTools.Hosting.csproj", "{92795C39-80DB-4609-A871-5F56F29EDE94}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.SqlTools.Hosting.Contracts", "..\..\..\src\Microsoft.SqlTools.Hosting.Contracts\Microsoft.SqlTools.Hosting.Contracts.csproj", "{44F953CF-961D-4CFE-B892-AAAEB1FDE026}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.SqlTools.DataProtocol.Contracts", "..\..\..\src\Microsoft.SqlTools.DataProtocol.Contracts\Microsoft.SqlTools.DataProtocol.Contracts.csproj", "{9647E0A3-BDF0-4BC5-B6BC-351272090C08}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.SqlTools.Samples.LanguageServerHost.Services", "Microsoft.SqlTools.Samples.LanguageServerHost.Services\Microsoft.SqlTools.Samples.LanguageServerHost.Services.csproj", "{3E94AE9D-E06C-408E-A331-067299F97975}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.SqlTools.CoreServices", "..\..\..\src\Microsoft.SqlTools.CoreServices\Microsoft.SqlTools.CoreServices.csproj", "{D21E6175-BABF-44C9-B5AE-F168F77EC969}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{249DA226-6593-44EC-9744-65B2C6B66649}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{249DA226-6593-44EC-9744-65B2C6B66649}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{249DA226-6593-44EC-9744-65B2C6B66649}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{249DA226-6593-44EC-9744-65B2C6B66649}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92795C39-80DB-4609-A871-5F56F29EDE94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92795C39-80DB-4609-A871-5F56F29EDE94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92795C39-80DB-4609-A871-5F56F29EDE94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92795C39-80DB-4609-A871-5F56F29EDE94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44F953CF-961D-4CFE-B892-AAAEB1FDE026}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44F953CF-961D-4CFE-B892-AAAEB1FDE026}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44F953CF-961D-4CFE-B892-AAAEB1FDE026}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44F953CF-961D-4CFE-B892-AAAEB1FDE026}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9647E0A3-BDF0-4BC5-B6BC-351272090C08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9647E0A3-BDF0-4BC5-B6BC-351272090C08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9647E0A3-BDF0-4BC5-B6BC-351272090C08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9647E0A3-BDF0-4BC5-B6BC-351272090C08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E94AE9D-E06C-408E-A331-067299F97975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E94AE9D-E06C-408E-A331-067299F97975}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E94AE9D-E06C-408E-A331-067299F97975}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E94AE9D-E06C-408E-A331-067299F97975}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D21E6175-BABF-44C9-B5AE-F168F77EC969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D21E6175-BABF-44C9-B5AE-F168F77EC969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D21E6175-BABF-44C9-B5AE-F168F77EC969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D21E6175-BABF-44C9-B5AE-F168F77EC969}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5ACB2A45-36D7-437F-B366-C1F5654FE825}
+	EndGlobalSection
+EndGlobal

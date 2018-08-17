@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Microsoft.SqlTools.CoreServices\Microsoft.SqlTools.CoreServices.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Microsoft.SqlTools.DataProtocol.Contracts\Microsoft.SqlTools.DataProtocol.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Microsoft.SqlTools.Hosting.v2\Microsoft.SqlTools.Hosting.csproj" />
+  </ItemGroup>
+
+</Project>

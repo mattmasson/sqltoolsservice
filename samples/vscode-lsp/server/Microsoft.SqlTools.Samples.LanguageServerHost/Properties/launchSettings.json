@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Microsoft.SqlTools.Samples.LanguageServerHost": {
+      "commandName": "Project",
+      "commandLineArgs": "--enable-logging --log-dir \"c:\\temp\""
+    }
+  }
+}
