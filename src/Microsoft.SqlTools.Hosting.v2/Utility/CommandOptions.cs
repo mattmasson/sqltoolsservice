@@ -49,6 +49,9 @@ namespace Microsoft.SqlTools.Hosting.Utility
                             case "-help":
                                 ShouldExit = true;
                                 return;
+                            case "-wait-for-debugger":
+                                WaitForDebugger = true;
+                                break;
                             default:
                                 ErrorMessage += string.Format("Unknown argument \"{0}\"" + Environment.NewLine, argName);
                                 break;
@@ -103,6 +106,12 @@ namespace Microsoft.SqlTools.Hosting.Utility
         public string ServiceName { get; private set; }
 
         /// <summary>
+        /// When specified the application will wait for a debugger to attach
+        /// before proceeding with initialization.
+        /// </summary>
+        public bool WaitForDebugger { get; private set; }
+
+        /// <summary>
         /// Get the usage string describing command-line arguments for the program
         /// </summary>
         public string Usage
@@ -116,6 +125,7 @@ namespace Microsoft.SqlTools.Hosting.Utility
                     "        [--log-dir **] (default: current directory)" + Environment.NewLine +
                     "        [--help]" + Environment.NewLine +
                     "        [--locale **] (default: 'en')" + Environment.NewLine,
+                    "        [--wait-for-debugger]" + Environment.NewLine,
                     ErrorMessage);
                 return str;
             }
