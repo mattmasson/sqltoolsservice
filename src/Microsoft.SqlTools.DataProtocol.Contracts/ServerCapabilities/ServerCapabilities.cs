@@ -7,6 +7,18 @@ namespace Microsoft.SqlTools.DataProtocol.Contracts.ServerCapabilities
 {    
     public class ServerCapabilities
     {
+        public ServerCapabilities()
+        {
+            // This was added because the VSCode languageclient (4.1.4) throws if 'workspaceFolders' doesn't exist
+            Workspace = new WorkspaceCapabilities
+            {                
+                WorkspaceFolders = new WorkspaceFolderCapabilities
+                {
+                    Supported = false
+                }
+            };
+        }
+
         /// <summary>
         /// Defines how text documents are synced. Is either a detailed structure defining each
         /// notification or for backwards compatibility the TextDocumentSyncKind number.
