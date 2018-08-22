@@ -17,7 +17,6 @@ export function activate(context: vscode.ExtensionContext) {
     let serverExecutablePath = "D:/src/github/sqltoolsservice/samples/vscode-lsp/server/Microsoft.SqlTools.Samples.LanguageServerHost/bin/Debug/netcoreapp2.1/Microsoft.SqlTools.Samples.LanguageServerHost.dll";
 
 	// The debug options for the server
-	// --inspect=6009: runs the server in Node's Inspector mode so VS Code can attach to the server for debugging
     let debugOptions = [serverExecutablePath, "--enable-logging", "--log-dir", "C:/Temp/logs", "--wait-for-debugger"];
     
 	// If the extension is launched in debug mode then the debug server options are used
