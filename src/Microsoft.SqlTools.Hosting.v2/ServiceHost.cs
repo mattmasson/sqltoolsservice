@@ -7,13 +7,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.SqlTools.DataProtocol.Contracts;
-using Microsoft.SqlTools.DataProtocol.Contracts.ServerCapabilities;
 using Microsoft.SqlTools.Hosting.Channels;
 using Microsoft.SqlTools.Hosting.Contracts;
 using Microsoft.SqlTools.Hosting.Contracts.Internal;
 using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.Hosting.Utility;
+using Microsoft.SqlTools.LanguageServerProtocol.Contracts.ServerCapabilities;
 
 namespace Microsoft.SqlTools.Hosting
 {

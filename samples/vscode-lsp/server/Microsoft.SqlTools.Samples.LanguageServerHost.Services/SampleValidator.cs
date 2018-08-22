@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Microsoft.SqlTools.CoreServices.Workspace;
 using Microsoft.SqlTools.Hosting;
 using Microsoft.SqlTools.Hosting.Extensibility;
 using Microsoft.SqlTools.Hosting.Protocol;

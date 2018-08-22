@@ -24,8 +24,8 @@
     <Folder Include="Localization\transXliff" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Microsoft.SqlTools.DataProtocol.Contracts\Microsoft.SqlTools.DataProtocol.Contracts.csproj" />
     <ProjectReference Include="..\Microsoft.SqlTools.Hosting.Contracts\Microsoft.SqlTools.Hosting.Contracts.csproj" />
+    <ProjectReference Include="..\Microsoft.SqlTools.LanguageServerProtocol.Contracts\Microsoft.SqlTools.LanguageServerProtocol.Contracts.csproj" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Localization\sr.resx" />

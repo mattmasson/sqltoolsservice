@@ -7,13 +7,12 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
-using Microsoft.SqlTools.CoreServices.SqlContext;
-using Microsoft.SqlTools.CoreServices.Workspace;
-using Microsoft.SqlTools.DataProtocol.Contracts.ServerCapabilities;
 using Microsoft.SqlTools.Hosting;
 using Microsoft.SqlTools.Hosting.Channels;
 using Microsoft.SqlTools.Hosting.Extensibility;
 using Microsoft.SqlTools.Hosting.Utility;
+using Microsoft.SqlTools.LanguageServerProtocol;
+using Microsoft.SqlTools.LanguageServerProtocol.Contracts.ServerCapabilities;
 using Microsoft.SqlTools.Samples.LanguageServerHost.Services;
 
 namespace Microsoft.SqlTools.Samples.LanguageServerHost

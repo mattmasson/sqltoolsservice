@@ -5,7 +5,6 @@
 
 using System;
 using System.Threading.Tasks;
-using Microsoft.SqlTools.DataProtocol.Contracts;
 using Microsoft.SqlTools.Hosting.Protocol;
 
 namespace Microsoft.SqlTools.Hosting

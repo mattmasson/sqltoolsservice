@@ -11,8 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\src\Microsoft.SqlTools.CoreServices\Microsoft.SqlTools.CoreServices.csproj" />
     <ProjectReference Include="..\..\..\..\src\Microsoft.SqlTools.Hosting.v2\Microsoft.SqlTools.Hosting.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Microsoft.SqlTools.LanguageServerProtocol.Contracts\Microsoft.SqlTools.LanguageServerProtocol.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Microsoft.SqlTools.LanguageServerProtocol\Microsoft.SqlTools.LanguageServerProtocol.csproj" />
     <ProjectReference Include="..\Microsoft.SqlTools.Samples.LanguageServerHost.Services\Microsoft.SqlTools.Samples.LanguageServerHost.Services.csproj" />
   </ItemGroup>
 

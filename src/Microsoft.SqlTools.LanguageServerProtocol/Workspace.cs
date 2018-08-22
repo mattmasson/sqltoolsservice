@@ -10,8 +10,8 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
-using Microsoft.SqlTools.DataProtocol.Contracts.ClientCapabilities;
 using Microsoft.SqlTools.Hosting.Utility;
+using Microsoft.SqlTools.LanguageServerProtocol.Contracts.ClientCapabilities;
 
 namespace Microsoft.SqlTools.LanguageServerProtocol
 {
