@@ -14,9 +14,11 @@ let client: LanguageClient;
 
 export function activate(context: vscode.ExtensionContext) {
 
+	// TODO: determine path from location of extension
     let serverExecutablePath = "D:/src/github/sqltoolsservice/samples/vscode-lsp/server/Microsoft.SqlTools.Samples.LanguageServerHost/bin/Debug/netcoreapp2.1/Microsoft.SqlTools.Samples.LanguageServerHost.dll";
 
 	// The debug options for the server
+	// TODO: parameterize log directory
     let debugOptions = [serverExecutablePath, "--enable-logging", "--log-dir", "C:/Temp/logs", "--wait-for-debugger"];
     
 	// If the extension is launched in debug mode then the debug server options are used
