@@ -39,10 +39,10 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
             // register a callback to handle document changes
             WorkspaceService.RegisterTextDocChangeCallback(HandleDidChangeTextDocumentNotification);
 
-            // Register an initialization handler that sets the workspace path
+            // Register an initialization handler that retrieves the initial settings
             serviceHost.RegisterInitializeTask(async (parameters, context) =>
             {
-                Logger.Instance.Write(LogLevel.Verbose, "Initializing configuration service");
+                Logger.Instance.Write(LogLevel.Verbose, "Initializing service");
 
                 context.SendEvent(
                     DidChangeConfigurationNotification<LanguageServerSettings>.Type,
@@ -61,6 +61,7 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
             LanguageServerSettings oldSettings,
             EventContext eventContext)
         {
+            // TODO: handle configuration changes
             return Task.FromResult(true);
         }
 
@@ -102,8 +103,8 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
                     Message = string.Format("'{0}' is all uppercase.", m.Value),
                     Range = new Range
                     {
-                        Start = new Position { Line = start.Line - 1, Character = start.Column -1 },
-                        End = new Position { Line = end.Line - 1, Character = end.Column - 1 },
+                        Start = new Position { Line = start.Line - document.BaseOffset, Character = start.Column - document.BaseOffset },
+                        End = new Position { Line = end.Line - document.BaseOffset, Character = end.Column - document.BaseOffset },
                     }
                 });
 

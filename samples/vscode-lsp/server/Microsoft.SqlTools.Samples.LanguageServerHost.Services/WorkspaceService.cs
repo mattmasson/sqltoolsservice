@@ -33,9 +33,6 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
 
         public override void InitializeService(IServiceHost serviceHost)
         {
-            // Create a workspace that will handle state for the session
-            Workspace = new Workspace();
-
             serviceHost.SetAsyncEventHandler(DidChangeTextDocumentNotification.Type, HandleDidChangeTextDocumentNotification);
             serviceHost.SetAsyncEventHandler(DidOpenTextDocumentNotification.Type, HandleDidOpenTextDocumentNotification);
             serviceHost.SetAsyncEventHandler(DidCloseTextDocumentNotification.Type, HandleDidCloseTextDocumentNotification);
@@ -45,20 +42,19 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
             {
                 Logger.Instance.Write(LogLevel.Verbose, "Initializing workspace service");
 
-                // TODO: cache client capabilities?
+                // Create a workspace that will handle state for the session
+                Workspace = new Workspace(parameters.Capabilities);
 
-                if (Workspace != null)
+                // we only support a single workspace path
+                if (parameters.WorkspaceFolders != null)
                 {
-                    // we only support a single workspace path
-                    if (parameters.WorkspaceFolders != null)
-                    {
-                        Workspace.WorkspacePath = parameters.WorkspaceFolders.First().Uri;
-                    }
-                    else
-                    {
-                        Workspace.WorkspacePath = parameters.RootUri;
-                    }
+                    Workspace.WorkspacePath = parameters.WorkspaceFolders.First().Uri;
                 }
+                else
+                {
+                    Workspace.WorkspacePath = parameters.RootUri;
+                }
+
                 await Task.FromResult(0);
             });
 
@@ -72,6 +68,7 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
                     Workspace.Dispose();
                     Workspace = null;
                 }
+
                 await Task.FromResult(0);
             });
         }
@@ -175,7 +172,8 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
                         changedFile.ApplyChange(
                             GetFileChangeDetails(
                                 textChange.Range.Value,
-                                textChange.Text));
+                                textChange.Text,
+                                changedFile.BaseOffset));
 
                         changedFiles.Add(changedFile);
                     }
@@ -199,7 +197,7 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
         {
             try
             {
-                Logger.Instance.Write(LogLevel.Verbose, "HandleDidOpenTextDocumentNotification");
+                Logger.Instance.Write(LogLevel.Verbose, "textDocument/didOpen");
 
                 if (IsScmEvent(openParams.TextDocument.Uri))
                 {
@@ -230,7 +228,7 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
         {
             try
             {
-                Logger.Instance.Write(LogLevel.Verbose, "HandleDidCloseTextDocumentNotification");
+                Logger.Instance.Write(LogLevel.Verbose, "textDocument/didClose");
 
                 if (IsScmEvent(closeParams.TextDocument.Uri))
                 {
@@ -263,20 +261,20 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
         #region Private Helpers
 
         /// <summary>
-        /// Switch from 0-based offsets to 1 based offsets
+        /// Switch from 0-based offsets used by Language Server Protocol to whatever offset 
+        /// is used for the <see cref="TextDocument.BaseOffset"/>.
         /// </summary>
         /// <param name="changeRange"></param>
         /// <param name="insertString"></param>       
-        private static DocumentChange GetFileChangeDetails(Range changeRange, string insertString)
+        private static DocumentChange GetFileChangeDetails(Range changeRange, string insertString, int offset)
         {
-            // The protocol's positions are zero-based so add 1 to all offsets
             return new DocumentChange
             {
                 InsertString = insertString,
-                Line = changeRange.Start.Line + 1,
-                Offset = changeRange.Start.Character + 1,
-                EndLine = changeRange.End.Line + 1,
-                EndOffset = changeRange.End.Character + 1
+                Line = changeRange.Start.Line + offset,
+                Offset = changeRange.Start.Character + offset,
+                EndLine = changeRange.End.Line + offset,
+                EndOffset = changeRange.End.Character + offset
             };
         }
 

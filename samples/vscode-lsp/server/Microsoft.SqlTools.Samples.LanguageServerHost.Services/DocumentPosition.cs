@@ -24,8 +24,8 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
         /// column numbers in the specified file.
         /// </summary>
         /// <param name="document">The document in which the position is located.</param>
-        /// <param name="line">The 1-based line number in the file.</param>
-        /// <param name="column">The 1-based column number in the file.</param>
+        /// <param name="line">The line number in the file.</param>
+        /// <param name="column">The column number in the file.</param>
         public DocumentPosition(
             TextDocument document,
             int line,
@@ -75,16 +75,17 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
         /// whitespace for indentation.
         /// </summary>
         /// <returns>A new FilePosition instance for the calculated position.</returns>
+        /// <seealso cref="TextDocument.BaseOffset"/>
         public DocumentPosition GetLineStart()
         {
-            string scriptLine = document.FileLines[Line - 1];
+            string scriptLine = document.FileLines[Line - document.BaseOffset];
 
-            int lineStartColumn = 1;
+            int lineStartColumn = document.BaseOffset;
             for (int i = 0; i < scriptLine.Length; i++)
             {
                 if (!char.IsWhiteSpace(scriptLine[i]))
                 {
-                    lineStartColumn = i + 1;
+                    lineStartColumn = i + document.BaseOffset;
                     break;
                 }
             }
@@ -97,10 +98,11 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
         /// of the end of the current line.
         /// </summary>
         /// <returns>A new FilePosition instance for the calculated position.</returns>
+        /// <seealso cref="TextDocument.BaseOffset"/>
         public DocumentPosition GetLineEnd()
         {
-            string scriptLine = document.FileLines[Line - 1];
-            return new DocumentPosition(document, Line, scriptLine.Length + 1);
+            string scriptLine = document.FileLines[Line - document.BaseOffset];
+            return new DocumentPosition(document, Line, scriptLine.Length + document.BaseOffset);
         }
 
         #endregion

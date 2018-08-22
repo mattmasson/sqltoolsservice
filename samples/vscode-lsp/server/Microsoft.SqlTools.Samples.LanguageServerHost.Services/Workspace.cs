@@ -10,6 +10,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using Microsoft.SqlTools.DataProtocol.Contracts.ClientCapabilities;
 using Microsoft.SqlTools.Hosting.Utility;
 
 namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
@@ -27,14 +28,22 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
         {
             "file",
             UntitledScheme,
-            //"tsqloutput"
+            //"tsqloutput"  // should be set in script sub-class?
         };
 
-        private Dictionary<string, TextDocument> workspaceDocuments = new Dictionary<string, TextDocument>();
+        private readonly Dictionary<string, TextDocument> workspaceDocuments = new Dictionary<string, TextDocument>();
 
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// All documents contained within the workspace. Can be overridden to specialize the Document type.
+        /// </summary>
+        virtual protected Dictionary<string, TextDocument> Documents
+        {
+            get { return workspaceDocuments; }
+        }
 
         /// <summary>
         /// Set of known schemes used to determine whether a given URI points to a file.
@@ -48,15 +57,31 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
         /// </summary>
         public string WorkspacePath { get; set; }
 
+        /// <summary>
+        /// Gets or sets the ClientCapabilities set during initialization.
+        /// </summary>
+        virtual public ClientCapabilities ClientCapabilities { get; private set; }
+
         #endregion
 
         #region Constructors
 
         /// <summary>
-        /// Creates a new instance of the Workspace class.
+        /// Creates a new instance of the Workspace class with default ClientCapabilities.
         /// </summary>
         internal Workspace()
+            : this(new ClientCapabilities())
         {
+            
+        }
+
+        /// <summary>
+        /// Creates a new instance of the Workspace class.
+        /// </summary>
+        /// <param name="clientCapabilities">Capabilities of the client connected to this workspace</param>
+        internal Workspace(ClientCapabilities clientCapabilities)
+        {
+            ClientCapabilities = clientCapabilities;
         }
 
         #endregion
@@ -77,11 +102,11 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
             string keyName = resolvedFile.LowercaseFilePath;
 
             TextDocument document = null;
-            return this.workspaceDocuments.TryGetValue(keyName, out document);
+            return this.Documents.TryGetValue(keyName, out document);
         }
 
         /// <summary>
-        /// Gets an open file in the workspace.  If the file isn't open but
+        /// Gets an open file in the workspace. If the file isn't open but
         /// exists on the filesystem, load and return it. Virtual method to
         /// allow for mocking
         /// </summary>
@@ -106,7 +131,7 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
 
             // Make sure the file isn't already loaded into the workspace
             TextDocument document = null;
-            if (!this.workspaceDocuments.TryGetValue(keyName, out document))
+            if (!this.Documents.TryGetValue(keyName, out document))
             {
                 if (IsUntitled(resolvedFile.FilePath)
                     || !resolvedFile.CanReadFromDisk
@@ -123,7 +148,7 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
                 {
                     document = new TextDocument(resolvedFile.FilePath, path, streamReader, isInMemory: false);
 
-                    this.workspaceDocuments.Add(keyName, document);
+                    this.Documents.Add(keyName, document);
                 }
 
                 Logger.Instance.Write(LogLevel.Verbose, "Opened file on disk: " + resolvedFile.FilePath);
@@ -212,11 +237,11 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
 
             // Make sure the file isn't already loaded into the workspace
             TextDocument document = null;
-            if (!this.workspaceDocuments.TryGetValue(keyName, out document))
+            if (!this.Documents.TryGetValue(keyName, out document))
             {
                 document = new TextDocument(resolvedFile.FilePath, path, initialBuffer);
 
-                this.workspaceDocuments.Add(keyName, document);
+                this.Documents.Add(keyName, document);
 
                 Logger.Instance.Write(LogLevel.Verbose, "Opened file as in-memory buffer: " + resolvedFile.FilePath);
             }
@@ -230,7 +255,7 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
         /// <returns>An array of all opened TextDocuments in the workspace.</returns>
         public TextDocument[] GetOpenedFiles()
         {
-            return workspaceDocuments.Values.ToArray();
+            return Documents.Values.ToArray();
         }
 
         /// <summary>
@@ -241,7 +266,7 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
         {
             Validate.IsNotNull("document", document);
 
-            this.workspaceDocuments.Remove(document.Id);
+            this.Documents.Remove(document.Id);
         }
 
         internal string GetBaseFilePath(string path)

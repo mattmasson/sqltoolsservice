@@ -20,7 +20,7 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
         /// <summary>
         /// Provides an instance that represents a range that has not been set.
         /// </summary>
-        public static readonly BufferRange None = new BufferRange(0, 0, 0, 0);
+        public static readonly BufferRange None = new BufferRange(-1, -1, -1, -1);
 
         /// <summary>
         /// Gets the start position of the range in the buffer.
@@ -69,10 +69,10 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
         /// <summary>
         /// Creates a new instance of the BufferRange class.
         /// </summary>
-        /// <param name="startLine">The 1-based starting line number of the range.</param>
-        /// <param name="startColumn">The 1-based starting column number of the range.</param>
-        /// <param name="endLine">The 1-based ending line number of the range.</param>
-        /// <param name="endColumn">The 1-based ending column number of the range.</param>
+        /// <param name="startLine">The starting line number of the range.</param>
+        /// <param name="startColumn">The starting column number of the range.</param>
+        /// <param name="endLine">The ending line number of the range.</param>
+        /// <param name="endColumn">The ending column number of the range.</param>
         public BufferRange(
             int startLine,
             int startColumn,
