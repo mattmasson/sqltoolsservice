@@ -5,7 +5,7 @@
 
 using Microsoft.SqlTools.Hosting.Contracts;
 
-namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services.Contracts
+namespace Microsoft.SqlTools.LanguageServerProtocol.Contracts
 {
     public class DidChangeConfigurationNotification<TConfig>
     {

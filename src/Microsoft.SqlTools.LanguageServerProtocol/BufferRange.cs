@@ -6,7 +6,7 @@
 using System;
 using System.Diagnostics;
 
-namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
+namespace Microsoft.SqlTools.LanguageServerProtocol
 {
     /// <summary>
     /// Provides details about a range between two positions in

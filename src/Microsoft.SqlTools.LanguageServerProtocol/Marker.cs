@@ -3,9 +3,9 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
 
-using Microsoft.SqlTools.Samples.LanguageServerHost.Services.Contracts;
+using Microsoft.SqlTools.LanguageServerProtocol.Contracts;
 
-namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
+namespace Microsoft.SqlTools.LanguageServerProtocol
 {
     public class Marker
     {

@@ -9,7 +9,7 @@ using System.IO;
 using System.Linq;
 using Microsoft.SqlTools.Hosting.Utility;
 
-namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
+namespace Microsoft.SqlTools.LanguageServerProtocol
 {
     /// <summary>
     /// Contains the details and contents of an open file.

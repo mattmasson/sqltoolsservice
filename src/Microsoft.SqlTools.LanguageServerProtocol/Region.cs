@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
+namespace Microsoft.SqlTools.LanguageServerProtocol
 {
     public class Region
     {

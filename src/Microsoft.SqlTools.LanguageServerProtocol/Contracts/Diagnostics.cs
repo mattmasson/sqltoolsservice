@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.SqlTools.Hosting.Contracts;
 
-namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services.Contracts
+namespace Microsoft.SqlTools.LanguageServerProtocol.Contracts
 {
     public class PublishDiagnosticsNotification
     {

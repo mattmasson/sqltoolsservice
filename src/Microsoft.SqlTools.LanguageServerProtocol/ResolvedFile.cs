@@ -6,7 +6,7 @@
 using System;
 using System.IO;
 
-namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
+namespace Microsoft.SqlTools.LanguageServerProtocol
 {
     /// <summary>
     /// Utility object holding a result of a file resolve action.

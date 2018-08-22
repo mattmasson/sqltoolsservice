@@ -6,7 +6,7 @@
 using System.Diagnostics;
 using Microsoft.SqlTools.Hosting.Contracts;
 
-namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services.Contracts
+namespace Microsoft.SqlTools.LanguageServerProtocol.Contracts
 {
     /// <summary>
     /// Defines a base parameter class for identifying a text document.

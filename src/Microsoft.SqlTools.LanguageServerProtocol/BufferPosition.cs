@@ -5,7 +5,7 @@
 
 using System.Diagnostics;
 
-namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
+namespace Microsoft.SqlTools.LanguageServerProtocol
 {
     /// <summary>
     /// Provides details about a position in a file buffer.  All

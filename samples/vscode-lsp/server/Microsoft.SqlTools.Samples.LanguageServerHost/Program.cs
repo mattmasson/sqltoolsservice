@@ -62,6 +62,7 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost
                 string[] searchPath = new string[] {
                     "Microsoft.SqlTools.Hosting.v2.dll",
                     //"Microsoft.SqlTools.CoreServices.dll",
+                    "Microsoft.SqlTools.LanguageServerProtocol.dll",
                     "Microsoft.SqlTools.Samples.LanguageServerHost.Services.dll",
                 };
 

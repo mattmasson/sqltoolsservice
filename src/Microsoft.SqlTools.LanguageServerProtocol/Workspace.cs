@@ -13,7 +13,7 @@ using System.Text.RegularExpressions;
 using Microsoft.SqlTools.DataProtocol.Contracts.ClientCapabilities;
 using Microsoft.SqlTools.Hosting.Utility;
 
-namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
+namespace Microsoft.SqlTools.LanguageServerProtocol
 {
     /// <summary>
     /// Manages a "workspace" of documents that are open for a particular editing session.

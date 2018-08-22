@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.SqlTools.Samples.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.SqlTools.CoreServices", "..\..\..\src\Microsoft.SqlTools.CoreServices\Microsoft.SqlTools.CoreServices.csproj", "{D21E6175-BABF-44C9-B5AE-F168F77EC969}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.SqlTools.LanguageServerProtocol", "..\..\..\src\Microsoft.SqlTools.LanguageServerProtocol\Microsoft.SqlTools.LanguageServerProtocol.csproj", "{054ECA56-A4D0-4A6F-8DC8-3794B2403D8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{D21E6175-BABF-44C9-B5AE-F168F77EC969}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D21E6175-BABF-44C9-B5AE-F168F77EC969}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D21E6175-BABF-44C9-B5AE-F168F77EC969}.Release|Any CPU.Build.0 = Release|Any CPU
+		{054ECA56-A4D0-4A6F-8DC8-3794B2403D8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{054ECA56-A4D0-4A6F-8DC8-3794B2403D8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{054ECA56-A4D0-4A6F-8DC8-3794B2403D8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{054ECA56-A4D0-4A6F-8DC8-3794B2403D8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

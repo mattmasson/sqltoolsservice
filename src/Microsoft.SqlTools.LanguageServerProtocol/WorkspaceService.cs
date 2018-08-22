@@ -14,9 +14,9 @@ using Microsoft.SqlTools.Hosting.Contracts;
 using Microsoft.SqlTools.Hosting.Extensibility;
 using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.Hosting.Utility;
-using Microsoft.SqlTools.Samples.LanguageServerHost.Services.Contracts;
+using Microsoft.SqlTools.LanguageServerProtocol.Contracts;
 
-namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
+namespace Microsoft.SqlTools.LanguageServerProtocol
 {
     [Export(typeof(IHostedService))]
     public class WorkspaceService : HostedService<WorkspaceService> 

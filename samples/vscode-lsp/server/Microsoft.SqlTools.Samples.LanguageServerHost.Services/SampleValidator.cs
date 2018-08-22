@@ -11,7 +11,8 @@ using Microsoft.SqlTools.Hosting;
 using Microsoft.SqlTools.Hosting.Extensibility;
 using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.Hosting.Utility;
-using Microsoft.SqlTools.Samples.LanguageServerHost.Services.Contracts;
+using Microsoft.SqlTools.LanguageServerProtocol;
+using Microsoft.SqlTools.LanguageServerProtocol.Contracts;
 
 namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
 {
