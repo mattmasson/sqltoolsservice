@@ -308,42 +308,36 @@ namespace Microsoft.SqlTools.LanguageServerProtocol
             }
         }
 
-        /*
-         // TODO: does this need to be moved to the ScriptFile base class?
-         // TODO: does not take BaseOffset into account.
+        /// <summary>
+        /// Calculates the zero-based character offset of a given
+        /// line and column position in the file.
+        /// </summary>
+        /// <param name="lineNumber">The line number from which the offset is calculated.</param>
+        /// <param name="columnNumber">The column number from which the offset is calculated.</param>
+        /// <returns>The zero-based offset for the given file position.</returns>
+        public int GetOffsetAtPosition(int lineNumber, int columnNumber)
+        {
+            Validate.IsWithinRange("lineNumber", lineNumber, BaseOffset, FileLines.Count);
+            Validate.IsGreaterThan("columnNumber", columnNumber, 0);
 
+            int offset = 0;
 
-                /// <summary>
-                /// Calculates the zero-based character offset of a given
-                /// line and column position in the file.
-                /// </summary>
-                /// <param name="lineNumber">The 1-based line number from which the offset is calculated.</param>
-                /// <param name="columnNumber">The 1-based column number from which the offset is calculated.</param>
-                /// <returns>The zero-based offset for the given file position.</returns>
-                public int GetOffsetAtPosition(int lineNumber, int columnNumber)
+            for (int i = 0; i < lineNumber; i++)
+            {
+                if (i == lineNumber - 1)
                 {
-                    Validate.IsWithinRange("lineNumber", lineNumber, 1, FileLines.Count);
-                    Validate.IsGreaterThan("columnNumber", columnNumber, 0);
-
-                    int offset = 0;
-
-                    for (int i = 0; i < lineNumber; i++)
-                    {
-                        if (i == lineNumber - 1)
-                        {
-                            // Subtract 1 to account for 1-based column numbering
-                            offset += columnNumber - 1;
-                        }
-                        else
-                        {
-                            // Add an offset to account for the current platform's newline characters
-                            offset += FileLines[i].Length + Environment.NewLine.Length;
-                        }
-                    }
-
-                    return offset;
+                    offset += columnNumber - BaseOffset;
                 }
-        */
+                else
+                {
+                    // Add an offset to account for the current platform's newline characters
+                    offset += FileLines[i].Length + Environment.NewLine.Length;
+                }
+            }
+
+            return offset;
+        }
+
         /// <summary>
         /// Calculates a FilePosition relative to a starting BufferPosition
         /// using the given line and column offset.
