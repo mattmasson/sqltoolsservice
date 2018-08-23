@@ -296,7 +296,8 @@ namespace Microsoft.SqlTools.LanguageServerProtocol
                     // Append the first line fragment
                     finalLine = firstLineFragment + finalLine;
                 }
-                if (changeIndex == changeLines.Length - BaseOffset)
+                // are we on the last change?
+                if (changeIndex == changeLines.Length - 1)
                 {
                     // Append the last line fragment
                     finalLine = finalLine + lastLineFragment;
