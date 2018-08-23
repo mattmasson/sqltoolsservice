@@ -117,7 +117,7 @@ namespace Microsoft.SqlTools.Samples.LanguageServerHost.Services
                 PublishDiagnosticsNotification.Type,
                 new PublishDiagnosticsNotification
                 {
-                    Uri = document.Id,
+                    Uri = document.ClientFilePath,
                     Diagnostics = diagnostics.ToArray()
                 }
             );
