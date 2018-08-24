@@ -311,22 +311,28 @@ namespace Microsoft.SqlTools.LanguageServerProtocol
         /// <summary>
         /// Calculates the zero-based character offset of a given
         /// line and column position in the file.
+        /// The <paramref name="lineNumber"/> and <paramref name="columnNumber"/> are assumed to use the 
+        /// same <see cref="BaseOffset"/> as the current TextDocument.
         /// </summary>
         /// <param name="lineNumber">The line number from which the offset is calculated.</param>
         /// <param name="columnNumber">The column number from which the offset is calculated.</param>
         /// <returns>The zero-based offset for the given file position.</returns>
         public int GetOffsetAtPosition(int lineNumber, int columnNumber)
         {
-            Validate.IsWithinRange("lineNumber", lineNumber, BaseOffset, FileLines.Count);
-            Validate.IsGreaterThan("columnNumber", columnNumber, 0);
+            // adjust for baseoffset - all further calculations should be equivalent to 0-based offsets
+            lineNumber -= BaseOffset;
+            columnNumber -= BaseOffset;
+
+            Validate.IsWithinRange("lineNumber", lineNumber, 0, FileLines.Count - 1);
+            Validate.IsWithinRange("columnNumber", columnNumber, 0, FileLines[lineNumber].Length);
 
             int offset = 0;
 
-            for (int i = 0; i < lineNumber; i++)
+            for (int i = 0; i <= lineNumber; i++)
             {
-                if (i == lineNumber - 1)
+                if (i == lineNumber)
                 {
-                    offset += columnNumber - BaseOffset;
+                    offset += columnNumber;
                 }
                 else
                 {
